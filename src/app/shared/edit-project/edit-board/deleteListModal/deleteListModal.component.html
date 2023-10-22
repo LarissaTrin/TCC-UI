@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h2 class="modal-title">Confirm Deletion</h2>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="bsModalRef.hide()"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="modal-body">
+  Are you sure you want to delete '<b>{{ listName }}</b>'? 
+  <br />All linked cards will be deleted.
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cancelDelete()">
+    Cancel
+  </button>
+  <button type="button" class="btn btn-primary" (click)="confirmDelete()">
+    Delete
+  </button>
+</div>

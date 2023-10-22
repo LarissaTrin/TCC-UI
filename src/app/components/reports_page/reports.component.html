@@ -1,0 +1,32 @@
+<app-navbar [title]="title"></app-navbar>
+<div class="row p-4" [ngClass]="{'border-reports-expand': isExpand, 'border-reports': !isExpand}">
+  <div class="col-md-4 mt-3">
+    <div class="rounded-3 p-3 options-reports height-card-reports">
+      <h1 class="card-text text-center">Overdue</h1>
+      <hr style="margin-top: -15px;">
+    </div>
+  </div><div class="col-md-4 mt-3">
+    <div class="rounded-3 p-3 options-reports height-card-reports">
+      <h1 class="card-text text-center">Progress</h1>
+      <hr style="margin-top: -15px;">
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="rounded-3 p-3 options-reports height-card-reports">
+      <h1 class="card-text text-center">Done</h1>
+      <hr style="margin-top: -15px;">
+    </div>
+  </div>
+  <div class="col-md-12 mt-3">
+    <div class="rounded-3 p-3 options-reports height-card-graphcs-reports">
+      <h1 class="card-text">Status por projeto</h1>
+      <hr style="margin-top: -15px;">
+    </div>
+  </div>
+  <div class="col-md-12 mt-3">
+    <div class="rounded-3 p-3 options-reports height-card-graphcs-reports">
+      <h1 class="card-text">Total de tarefas por projeto</h1>
+      <hr style="margin-top: -15px;">
+    </div>
+  </div>
+</div>

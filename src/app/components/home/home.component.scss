@@ -1,0 +1,64 @@
+.options{
+  border-color: #123F66;
+  background-color: #022544;
+  color: white !important;
+  border-radius: 1rem!important;
+  height: 50vh;
+}
+
+.height-title{
+  height: 20vh;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.margin-home-expand{
+  width: calc(100vw - 280px)
+}
+
+.margin-home {
+  width: calc(100vw - 90px)
+}
+
+.btn-project{
+  height: 75px;
+  width: 87px;
+  margin-top: 10px;
+}
+
+.btn-project:hover {
+  color: black !important;
+}
+
+.item-collor-home{
+  color: white !important;
+}
+
+.item-collor-home.active{
+  border-bottom: 2px solid white;
+}
+
+.scroll-y-when-small {
+  overflow-y: auto;
+  max-height: 20vh;
+}
+
+.scroll-y-when-activities {
+  overflow-y: auto;
+  max-height: 25vh;
+}
+
+@media (min-width: 0px) and (max-width: 20vh) {
+  .scroll-y-when-small {
+    overflow-y: auto;
+    max-height: none;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 15vh) {
+  .scroll-y-when-activities {
+    overflow-y: auto;
+    max-height: none;
+  }
+}

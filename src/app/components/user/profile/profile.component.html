@@ -1,0 +1,118 @@
+<app-navbar [title]="title"></app-navbar>
+<div class="card rounded shadow-sm p-3 m-5"
+[ngClass]="{
+  'border-profile-expand': isExpand,
+  'border-profile': !isExpand
+}">
+  <form
+    class="row" [formGroup]="profileForm" (ngSubmit)="onSubmit()"
+  >
+    <div class="col-lg-3">
+      <div class="card mb-3">
+        <div class="card-header"></div>
+        <div class="card-body align-items-center row" style="height: 160px;">
+          <div class="h4 text-center mb-3 col-12">@{{form.userName.value}}</div>
+          <div class="h7 text-bold pb-1 text-center col-12"><b>{{form.firstName.value}} {{form.lastName.value}}</b></div>
+        </div>
+        <div class="card-footer"></div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="form-group col-12">
+          <h1 class="border-bottom">Profile Details</h1>
+        </div>
+        <div class="col-md-6">
+          <label for="inputName" class="form-label">First Name</label>
+          <input
+              type="text"
+              class="form-control"
+              id="inputName"
+              [ngClass]="cssValidator(form.firstName)"
+              placeholder="Enter First Name"
+              formControlName="firstName"
+            />
+            <div class="invalid-feedback">First name is required.</div>
+          </div>
+        <div class="col-md-6">
+          <label for="inputLastName" class="form-label">Last Name</label>
+          <input
+              type="text"
+              class="form-control"
+              id="inputLastName"
+              [ngClass]="cssValidator(form.lastName)"
+              placeholder="Enter Last Name"
+              formControlName="lastName"
+            />
+            <div class="invalid-feedback">Last name is required.</div>
+          </div>
+        <div class="col-12 mt-3">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              [ngClass]="cssValidator(form.email)"
+              placeholder="Enter email"
+              formControlName="email"
+            />
+            <div
+              *ngIf="form.email.errors?.required && form.email.touched"
+              class="invalid-feedback"
+            >
+              Email is required.
+            </div>
+            <div
+              *ngIf="form.email.errors?.email && form.email.touched"
+              class="invalid-feedback"
+            >
+              Invalid email.
+            </div>
+          </div>    
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="row">
+        <div>
+          <h1 class="pt-3 border-bottom">Change Password</h1>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword" class="form-label">Password</label>
+          <input
+              class="form-control"
+              type="password"
+              id="inputPassword"
+              [ngClass]="cssValidator(form.password)"
+              placeholder="Enter Password"
+              formControlName="password"
+            />
+            <div *ngIf="form.password.errors?.required && form.password.touched" class="invalid-feedback">Password is required.</div>
+            <div *ngIf="form.password.errors?.minlength && form.password.touched" class="invalid-feedback">Password is too short (at least 6 characters required).</div>
+          </div>
+        <div class="col-md-6">
+          <label for="inputConfPassword" class="form-label"
+            >Confirm Password</label
+          >
+          <input
+              class="form-control"
+              type="password"
+              id="inputConfPassword"
+              [ngClass]="cssValidator(form.passwordConfirm)"
+              placeholder="Enter Confirm Password"
+              formControlName="passwordConfirm"
+            />
+            <div *ngIf="form.passwordConfirm.errors?.required" class="invalid-feedback">Confirm password is required.</div>
+            <div *ngIf="form.passwordConfirm.errors?.mustMatch" class="invalid-feedback">Passwords do not match.</div>
+          </div>
+        <div class="col-md-12 mt-3 d-flex justify-content-between">
+          <button class="btn btn-outline-secondary mr-auto border" routerLink="home">
+            Cancel
+          </button>
+          <button class="btn btn-primary" type="submit">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

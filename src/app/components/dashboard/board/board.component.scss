@@ -1,0 +1,29 @@
+.list-container-border {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.to-do-border{
+  background-color: rgb(180 209 235 / 37%);
+  border-radius: 5px;
+  // height: 39vw;
+  min-height: 39vh;
+}
+
+.Lists{
+  overflow-x: overlay;
+  width: 80vw;
+}
+
+.Lists-comp{
+  overflow-x: overlay;
+  width: 90vw;
+}
+
+.title-list-to-do{
+  border-radius: 5px;
+  width: 400px;
+  background-color: #123F66;
+  color: white;
+}

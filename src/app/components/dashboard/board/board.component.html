@@ -1,0 +1,25 @@
+<div *ngIf="lists.length === 0" class="text-center">
+  <h2>No list found.</h2>
+</div>
+
+<section [ngClass]="{ Lists: isExpand, 'Lists-comp': !isExpand }" cdkScrollable>
+  <div
+    class="list-container-border"
+    cdkDropListGroup
+    (cdkDropListAutoScrollStep)="(150)"
+  >
+    <app-list
+      class="to-do-border ms-2"
+      [items]="list.cards ?? []"
+      [listOrder]="list.order"
+      [listName]="list.listName ?? ''"
+      *ngFor="let list of lists"
+      [completList]="lists"
+      [usersList]="project.projectUsers"
+      [userRolePermission]="userRolePermission"
+      (listModified)="onListModified($event)"
+    >
+      <h1 class="title-list-to-do px-4 p-1">{{ list.listName }}</h1>
+    </app-list>
+  </div>
+</section>

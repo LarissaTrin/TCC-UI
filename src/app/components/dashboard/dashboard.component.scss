@@ -1,0 +1,19 @@
+.border-top-expand{
+  width: calc(100vw - 290px)
+}
+
+.border-top {
+  width: calc(100vw - 110px)
+}
+.text-large{
+  font-size: xx-large;
+  color: #022544;
+}
+
+.item-collor-dashboard{
+  color: #022544 !important;
+}
+
+.item-collor-dashboard.active{
+  border-bottom: 2px solid #022544;
+}

@@ -1,0 +1,54 @@
+<div *ngIf="lists.length === 0" class="text-center">
+  <h2>No list found.</h2>
+</div>
+
+<div class="container">
+  <header *ngIf="lists.length > 0">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="border-right" style="width: 80px">#</th>
+            <th class="border-right" style="width: 200px">Title</th>
+            <th class="border-right" style="width: 100px">Due Date</th>
+            <th style="width: 80px">Priority</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </header>
+
+  <section>
+    <div class="card mt-3" *ngFor="let item of lists">
+      <div class="card-header bg-transparent" (click)="toggleBody(item.order)" style="cursor: pointer;">
+        <h2>{{item.listName}}</h2>
+      </div>
+      <div class="card-body" *ngIf="showBody[item.order]">
+        <table class="table table-hover">
+          <tbody *ngIf="item.cards && item.cards.length">
+            <tr *ngFor="let card of item.cards" (click)="openModal(cardDetails, card)">
+              <td style="width: 80px" class="border-right">{{card.id}}</td>
+              <td style="width: 200px" class="border-right">{{card.cardName}}</td>
+              <td style="width: 100px" class="border-right text-center">{{(card.date !== null && card.date !== undefined) ? card.date : "-"}}</td>
+              <td style="width: 80px" class="text-center">{{(card.priority !== null && card.priority !== undefined) ? Constants.priority[card.priority - 1] : "-"}}</td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="!item.cards?.length">
+            <td colspan="4" class="text-center">
+              <h2>No card found!</h2>
+            </td>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #cardDetails>
+  <app-card
+      [completList]="lists"
+      [activeCard]="activeCard"
+      [modalRef]="modalRef"
+      style="overflow-y: scroll;"
+    ></app-card>
+</ng-template>

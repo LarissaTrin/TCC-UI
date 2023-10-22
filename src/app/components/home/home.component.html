@@ -1,0 +1,60 @@
+<app-navbar ></app-navbar>
+<div class="row p-5" [ngClass]="{'margin-home-expand': isExpand, 'margin-home': !isExpand}">
+  <div class="col-md-12">
+    <div class="height-title options d-flex align-items-center justify-content-center flex-column">
+      <p class="card-title">{{week}}, {{month}} {{day}}.</p>
+      <h1 class="card-text">{{sldation}} {{user}}</h1>
+    </div>
+  </div>
+  <!--
+  <div class="col-md-6 mt-3">
+    <div class="p-3 options">
+      <ul class="nav">
+        <div class="nav-item d-flex flex-fill justify-content-end flex-sm-column" *ngFor="let tab of tabs"> 
+          <button class="nav-link item-collor-home"
+            [class.active]="activeTab === tab" (click)="setActiveTab(tab)">
+            {{ tab.title }}
+          </button>
+        </div>
+      </ul>
+      <div class="scroll-y-when-activities">
+        <div class="tab-content m-2" *ngFor="let task of activeTab.content">
+          <div class="d-flex align-items-center">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="task-{{task.id}}">
+              <label class="form-check-label" for="task-{{task.id}}"></label>
+            </div>
+            <h3 class="ms-2 mb-0">{{task.cardName}}</h3>
+            <h3 class="ms-auto mb-0 text-end">{{task.date}}</h3>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+  <div class="col-md-12 mt-3">
+    <div class="rounded-3 p-3 options">
+      <h1 class="card-text">Projects</h1>
+      <div class="d-flex flex-wrap align-items-center scroll-y-when-small">
+        <div class="btn-group mx-2">
+          <button class="btn btn-outline-light btn-project text-white" routerLinkActive="active" routerLink="/add-project">
+            <i class="bi bi-plus"></i><span>New Project</span>
+          </button>
+        </div>
+
+        <div class="btn-group mx-2" *ngFor="let item of projects">
+          <button class="btn btn-outline-light btn-project text-white flex-fill" routerLinkActive="active" [routerLink]="['/dashboard', item.id]">
+            {{item.projectName}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-md-12 mt-3">
+    <div class="rounded-3 p-3 options">
+      <h1 class="card-text">Notes</h1>
+      <hr style="margin-top: -15px;">
+      <textarea class="form-control" style="height: 20vh; resize: none" placeholder="Digite suas notas"></textarea>
+    </div>
+  </div> -->
+</div>

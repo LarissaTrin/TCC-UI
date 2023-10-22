@@ -1,0 +1,66 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white sidebar-template"
+  [ngClass]="{'sidebar-expand': isExpand, 'sidebar-no-expand': !isExpand}">
+  <a routerLink="home" class="text-white text-decoration-none sidebar-display">
+    <span class="fs-4" style="cursor: pointer;" *ngIf="isExpand">Trindade</span>
+    <span class="fs-4" style="cursor: pointer;" *ngIf="!isExpand">Trin</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item nav-pills flex-column mb-auto">
+      <a
+        class="nav-link color-text-side"
+        routerLinkActive="active-side"
+        routerLink="/home"
+      >
+        <i
+          class="bi bi-house-door"
+          [ngClass]="{ 'icon-size': isExpand, 'icon-size-expand': !isExpand }"
+        ></i>
+        <span *ngIf="isExpand" style="cursor: pointer;">Home</span>
+      </a>
+    </li>
+    <!-- <li class="nav-item">
+      <a
+        class="nav-link color-text-side"
+        routerLinkActive="active-side"
+        routerLink="/dashboard"
+      >
+        <i
+          class="bi bi-kanban"
+          [ngClass]="{ 'icon-size': isExpand, 'icon-size-expand': !isExpand }"
+        ></i>
+        <span *ngIf="isExpand">Dashboard</span>
+      </a>
+    </li> -->
+    <!-- <li class="nav-item">
+      <a
+        class="nav-link color-text-side"
+        routerLinkActive="active-side"
+        routerLink="reports"
+      >
+        <i
+          class="bi bi-bar-chart"
+          [ngClass]="{ 'icon-size': isExpand, 'icon-size-expand': !isExpand }"
+        ></i>
+        <span *ngIf="isExpand" style="cursor: pointer;">Reports</span>
+      </a>
+    </li> -->
+    <!-- <li class="nav-item">
+      <a
+        class="nav-link color-text-side"
+        routerLinkActive="active-side"
+        routerLink="metrics"
+      >
+        <i
+          class="bi bi-file-earmark-text"
+          [ngClass]="{ 'icon-size': isExpand, 'icon-size-expand': !isExpand }"
+        ></i>
+        <span *ngIf="isExpand">Metrics</span>
+      </a>
+    </li> -->
+  </ul>
+  <hr>
+  <i *ngIf="!isExpand" class="fa-solid fa-angles-right icon-size sidebar-display" (click)="changeSize()"></i>
+  <i *ngIf="isExpand" class="fa-solid fa-angles-left icon-size position-btn" (click)="changeSize()"></i>
+</div>
+

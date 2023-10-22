@@ -1,0 +1,82 @@
+<ng-content></ng-content>
+<div
+  class="list"
+  cdkDropList
+  [cdkDropListData]="items"
+  (cdkDropListDropped)="drop($event)"
+  id="cdk-drop-list-{{ listOrder }}"
+>
+  <button
+    *ngIf="!addItem && listOrder == 0 && userRolePermission"
+    type="button"
+    class="btn btn-new-item mb-2 ms-2"
+    (click)="addItemClick()"
+  >
+    + New Item
+  </button>
+  <div *ngIf="addItem && listOrder == 0" class="m-2">
+    <div class="card mt-2">
+      <div class="card-body" [formGroup]="newItemForm">
+        <div class="row">
+          <div class="form-group col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': validateItem && newItemForm.invalid
+              }"
+              id="newItem"
+              placeholder="Enter a new Item"
+              formControlName="newItem"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-color btn-color-new col-md-1"
+            (click)="addNewItem()"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            class="btn btn-color btn-color-cancel col-md-1 ms-1"
+            (click)="addItemClick()"
+          >
+            x
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <mat-card
+      class="list-item ms-2"
+      *ngFor="let item of items"
+      cdkDrag
+      id="test"
+    >
+      <mat-card-content (click)="openModal(cardDetails, item)">
+        <p>
+          <b style="margin-right: 10px">{{ item.id }}</b> {{ item.cardName }}
+        </p>
+        <p>{{ completList | findListName:item.listId }}</p>
+        <p>{{ item.userId !== null && item.userId !== undefined ? getUserInfo(item.userId) : ''}}</p>
+        <p *ngIf="item.priority !== null && item.priority !== undefined">
+          {{ Constants.priority[item.priority - 1] }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #cardDetails>
+  <app-card
+      [completList]="completList"
+      (formSubmitted)="handleFormSubmit($event)"
+      [activeCard]="activeCard"
+      [usersList]="usersList"
+      [modalRef]="modalRef"
+      [userRolePermission]="userRolePermission"
+      style="overflow-y: scroll;"
+    ></app-card>
+</ng-template>

@@ -1,0 +1,44 @@
+.btn-new-item{
+  color: #123F66;
+  font-size: small;
+  border-color: #123F66;
+  border-radius: 10px;
+}
+.btn-new-item:hover {
+  background-color: #123F66;
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+.save-icon{
+  color: #ffffff;
+}
+
+.btn-color{
+  border-color: #123F66;
+  color: #123F66;
+  width: auto;
+}
+
+.btn-color-cancel:hover{
+  border-color: #FF0047;
+  color: #FF0047;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.task-finish {
+  padding: 10px;
+}
+
+.custom-dropdown {
+  position: relative;
+}
+
+.custom-dropdown-menu {
+  position: absolute;
+  left: 0;
+  transform: translateX(-73%) !important;
+}

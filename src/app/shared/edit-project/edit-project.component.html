@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-3 custom-border-right">
+    <ul class="nav flex-column p-0" style="height: 100%">
+      <li class="nav-item" *ngFor="let item of items">
+        <button
+          class="nav-link item-collor-edit text-center w-100"
+          [class.active]="activeTab === item"
+          (click)="setActiveTab(item)"
+        >
+          {{ item }}
+        </button>
+      </li>
+      <li class="nav-item mt-auto">
+        <button
+          class="nav-link item-collor-delete text-center"
+          (click)="openModal(deleteProject)"
+        >
+          Delete Project
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="modal-header">
+      <h2 class="modal-title">Edit {{ activeTab }}</h2>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="modalRef.hide()"
+        aria-label="Close"
+      ></button>
+    </div>
+    <app-edit-settings
+      [project]="project"
+      *ngIf="activeTab === 'Settings'"
+      style="padding-right: 0px"
+    ></app-edit-settings>
+    <app-edit-users [projectId]="project.id" [projectUsers]="project.projectUsers" [owner]="project.userId" *ngIf="activeTab === 'Users'"></app-edit-users>
+    <app-edit-board
+      [lists]="project.lists ?? []"
+      [projectId]="project.id"
+      *ngIf="activeTab === 'Board'"
+    ></app-edit-board>
+  </div>
+</div>
+
+<ng-template #deleteProject>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Confirm Deletion Project</h2>
+      <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete project '<b>{{ project.projectName }}</b>'? 
+      <br />All linked items will be deleted.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="deleteProjectConfirm()">Delete</button>
+    </div>
+  </div>
+</ng-template>

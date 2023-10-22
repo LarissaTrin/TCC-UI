@@ -1,0 +1,36 @@
+<app-navbar
+  [title]="activeTab.title"
+  [projectName]="project.projectName"
+></app-navbar>
+<div
+  class="row m-1"
+  [ngClass]="{ 'border-top-expand': isExpand, 'border-top': !isExpand }"
+>
+  <div *ngIf="!notFoundProject" class="col-md-12">
+    <ul class="nav">
+      <li class="nav-item" *ngFor="let tab of tabs">
+        <button
+          class="nav-link item-collor-dashboard"
+          [routerLink]="[tab.route]"
+          [class.active]="activeTab === tab"
+          (click)="setActiveTab(tab)"
+        >
+          {{ tab.title }}
+        </button>
+      </li>
+      <li *ngIf="userRolePermission" class="nav-item" style="margin-left: auto;" (click)="openModal(template)">
+        <button type="button" class="btn">
+          <i class="bi bi-gear-fill"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="notFoundProject">
+    <h1 class="text-center mt-4">Select Validate Project</h1>
+  </div>
+</div>
+<router-outlet *ngIf="!notFoundProject"></router-outlet>
+
+<ng-template #template>
+  <app-edit-project [project]="project" [modalRef]="modalRef"></app-edit-project>
+</ng-template>

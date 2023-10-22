@@ -1,0 +1,69 @@
+<app-navbar [title]="title"></app-navbar>
+<button
+  class="btn btn-primary btn-sm"
+  routerLink="/home"
+  style="margin-top: 10px; margin-left: 10px"
+>
+  Cancel
+</button>
+<div
+  class="card rounded shadow-sm p-3 mx-5 my-4"
+  [ngClass]="{
+    'margin-add-project-expand': isExpand,
+    'margin-add-project': !isExpand
+  }"
+>
+  <form class="row" [formGroup]="projectForm" (submit)="onSubmit()">
+    <div class="col-lg-12">
+      <div class="mb-3">
+        <label for="projectName" class="form-label">Project Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="cssValidator(form.projectName)"
+          id="projectName"
+          placeholder="Project Name"
+          formControlName="projectName"
+        />
+        <div class="invalid-feedback">Project name is required.</div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="mb-3">
+        <label for="projectDescription" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          id="projectDescription"
+          rows="3"
+          placeholder="Description"
+          formControlName="description"
+          style="height: 30vh; resize: none"
+        ></textarea>
+      </div>
+    </div>
+    <!-- <div class="col-lg-12">
+      <div class="mb-3">
+        <label for="projectUsers" class="form-label">Project Users</label>
+        <input
+          type="text"
+          class="form-control"
+          id="projectUsers"
+          placeholder="Enter the user names separated by commas"
+          formControlName="projectUsers"
+        />
+        <small class="form-text text-muted"
+          >Enter the user names separated by commas</small
+        >
+      </div>
+    </div> -->
+    <div class="d-grid gap-2 col-12">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!projectForm.valid"
+      >
+        Create Project
+      </button>
+    </div>
+  </form>
+</div>

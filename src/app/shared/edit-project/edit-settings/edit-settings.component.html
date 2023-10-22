@@ -1,0 +1,30 @@
+<div class="col-md-9 w-100 p-3" [formGroup]="projectForm">
+  <div class="mb-3">
+    <label for="projectName" class="form-label">Project Name</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="cssValidator(form.projectName)"
+      id="projectName"
+      placeholder="Project Name"
+      formControlName="projectName"
+    />
+    <div class="invalid-feedback">Project name is required.</div>
+  </div>
+  <div class="mb-3">
+    <label for="projectDescription" class="form-label">Description</label>
+    <textarea
+      class="form-control"
+      id="projectDescription"
+      rows="5"
+      placeholder="Description"
+      formControlName="description"
+      style="resize: none"
+    ></textarea>
+  </div>
+</div>
+<div class="modal-footer justify-end">
+  <button type="button" class="btn btn-color" [disabled]="!projectForm.valid" (click)="saveProject()">
+    Save
+  </button>
+</div>

@@ -1,0 +1,342 @@
+<form [formGroup]="cardForm">
+  <div class="modal-header">
+    <div class="input-group">
+      <div>
+        <h1 class="modal-title" style="margin-bottom: 0px">
+          <b style="margin-right: 10px">{{ activeCard.id }}</b>
+        </h1>
+      </div>
+      <input
+        type="text"
+        id="inputCardName"
+        class="form-control"
+        formControlName="cardName"
+      />
+      <div class="btn-group custom-dropdown" dropdown>
+        <button
+          id="button-basic"
+          dropdownToggle
+          type="button"
+          class="btn btn-primary"
+          aria-controls="dropdown-basic"
+          style="border-radius: 0px"
+        >
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <ul
+          id="dropdown-basic"
+          *dropdownMenu
+          class="dropdown-menu custom-dropdown-menu"
+          role="menu"
+          aria-labelledby="button-basic"
+        >
+          <li role="menuitem">
+            <a class="dropdown-item" (click)="closeModal()">Close</a>
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" (click)="saveCard()">Save</a>
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" (click)="saveAndCloseCard()"
+              >Save and Close</a
+            >
+          </li>
+          <li *ngIf="userRolePermission" class="divider dropdown-divider"></li>
+          <li *ngIf="userRolePermission" role="menuitem">
+            <a
+              class="dropdown-item"
+              style="cursor: pointer"
+              (click)="deleteCardModal(deleteCard)"
+              >Delete</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="row p-2">
+      <div class="col-md-12">
+        <div class="row g-3">
+          <!-- <div class="col-md-6">
+            <label for="inputTags" class="form-label">Tags</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputTags"
+              placeholder="New tag"
+            />
+          </div>
+          <hr /> -->
+          <div class="col-md-6">
+            <label for="inputUser" class="form-label">User</label>
+            <input
+              list="datalistUsers"
+              id="inputUser"
+              class="form-control"
+              formControlName="userCardName"
+              placeholder="Add User"
+            />
+            <datalist id="datalistUsers">
+              <option
+                *ngFor="let user of usersList"
+                value="{{ user.user?.email }}"
+              >
+                {{ user.user?.firstName }} {{ user.user?.lastName }}
+              </option>
+            </datalist>
+          </div>
+          <div class="col-md-6">
+            <label for="inputState" class="form-label">State</label>
+            <select
+              id="inputState"
+              class="form-select"
+              formControlName="listId"
+              (change)="onStateChange($event)"
+            >
+              <option *ngFor="let item of completList" value="{{ item.id }}">
+                {{ item.listName }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputDate" class="form-label">Date</label>
+            <input
+              type="text"
+              placeholder="Add Date"
+              formControlName="date"
+              class="form-control"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="inputPriority" class="form-label">Priority</label>
+            <select
+              id="inputPriority"
+              class="form-select"
+              formControlName="priority"
+              (change)="onPriorityChange($event)"
+            >
+              <option value="null" selected>Add Priority</option>
+              <option value="1">Critical</option>
+              <option value="2">High</option>
+              <option value="3">Medium</option>
+              <option value="4">Low</option>
+            </select>
+          </div>
+          <hr />
+          <div class="col-lg-12">
+            <div class="mb-3">
+              <label
+                for="inputDescription"
+                class="form-label"
+                style="font-size: large"
+                >Description</label
+              >
+              <textarea
+                class="form-control"
+                id="inputDescription"
+                rows="6"
+                placeholder="Description"
+                formControlName="description"
+                style="resize: none"
+              ></textarea>
+            </div>
+          </div>
+          <hr />
+          <div
+            formArrayName="tasksProject"
+            class="row justify-content-start align-items-center"
+          >
+            <label
+              for="inputApprover"
+              class="form-label"
+              style="font-size: large"
+              >Tasks</label
+            >
+            <div *ngFor="let item of tasks.controls; let i = index">
+              <div
+                [formGroupName]="i"
+                style="margin-bottom: 10px"
+                class="container"
+              >
+                <div class="row">
+                  <div class="col-1 align-items-center">
+                    <input
+                      class="form-check-input task-finish"
+                      type="checkbox"
+                      formControlName="completed"
+                      value=""
+                      id="taskFinish"
+                    />
+                  </div>
+                  <div class="col-4">
+                    <input
+                      type="text"
+                      id="taskTitle"
+                      class="form-control"
+                      formControlName="taskName"
+                      placeholder="Add Title"
+                    />
+                  </div>
+                  <div class="col-3">
+                    <input
+                      list="datalistOptions"
+                      id="approverTitle"
+                      class="form-control"
+                      formControlName="userName"
+                      placeholder="Add User"
+                    />
+                    <datalist id="datalistOptions">
+                      <option
+                        *ngFor="let user of usersList"
+                        value="{{ user.user?.email }}"
+                      >
+                        {{ user.user?.firstName }} {{ user.user?.lastName }}
+                      </option>
+                    </datalist>
+                  </div>
+                  <div class="col-3">
+                    <input
+                      type="text"
+                      placeholder="Add Date"
+                      formControlName="date"
+                      class="form-control"
+                      bsDatepicker
+                      [bsConfig]="{
+                        adaptivePosition: true,
+                        dateInputFormat: 'DD.MM.YY'
+                      }"
+                    />
+                  </div>
+                  <div class="col-1">
+                    <button
+                      type="button"
+                      class="btn btn-color btn-color-cancel col-md-1 ms-1"
+                      (click)="removeTask(i)"
+                    >
+                      x
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn btn-new-item mb-2 ms-2"
+                (click)="addItemTask()"
+              >
+                New Task
+              </button>
+            </div>
+          </div>
+          <hr />
+          <div
+            formArrayName="approvers"
+            class="row justify-content-start align-items-center"
+          >
+            <label
+              for="inputApprover"
+              class="form-label"
+              style="font-size: large"
+              >Approver</label
+            >
+            <div *ngFor="let item of approvers.controls; let i = index">
+              <div
+                [formGroupName]="i"
+                style="margin-bottom: 10px"
+                class="container"
+              >
+                <div class="row">
+                  <div class="col-7">
+                    <input
+                      type="text"
+                      id="approverEnvironment"
+                      class="form-control"
+                      formControlName="environment"
+                      placeholder="Add Environment"
+                    />
+                  </div>
+                  <div class="col-4">
+                    <input
+                      list="datalistApprovers"
+                      id="approverUser"
+                      class="form-control"
+                      formControlName="userName"
+                      placeholder="Add User"
+                    />
+                    <datalist id="datalistApprovers">
+                      <option
+                        *ngFor="let user of usersList"
+                        value="{{ user.user?.email }}"
+                      >
+                        {{ user.user?.firstName }} {{ user.user?.lastName }}
+                      </option>
+                    </datalist>
+                  </div>
+                  <div class="col-1">
+                    <button
+                      type="button"
+                      class="btn btn-color btn-color-cancel col-md-1 ms-1"
+                      (click)="removeApprover(i)"
+                    >
+                      x
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn btn-new-item mb-2 ms-2"
+                (click)="addItemApprover()"
+              >
+                New Approver
+              </button>
+            </div>
+          </div>
+          <!-- <hr />
+          <div class="col-lg-12">
+            <div class="mb-3">
+              <label
+                for="inputDescription"
+                class="form-label"
+                style="font-size: large"
+                >Comments</label
+              >
+              <textarea
+                class="form-control"
+                id="inputDescription"
+                rows="6"
+                placeholder="Description"
+                formControlName="description"
+                style="resize: none"
+              ></textarea>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<ng-template #deleteCard>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Confirm Deletion</h2>
+      <button type="button" class="btn-close" (click)="closeModalDelete()" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete card '<b>{{ activeCard.cardName }}</b>'? 
+      <br />All linked items will be deleted.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeModalDelete()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="deleteCardConfirm()">Delete</button>
+    </div>
+  </div>
+</ng-template>

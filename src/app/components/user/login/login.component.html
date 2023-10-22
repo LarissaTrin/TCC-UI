@@ -1,0 +1,38 @@
+<div class="d-flex align-items-center vh-100">
+  <div class="mx-auto text-center shadow-sm bg-white rounded p-5 my-5">
+    <form #loginForm="ngForm" class="form-signin" (ngSubmit)="login()">
+		<i class="fa fa-users mb-2"></i>
+		<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+		<label for="username" class="sr-only">User</label>
+		<input
+			[(ngModel)]="model.userName"
+			name="username"
+			type="email"
+			id="username"
+			class="form-control"
+			placeholder="User"
+			required
+		/>
+		<label for="password" class="sr-only">Password</label>
+		<input
+			[(ngModel)]="model.password"
+			name="password"
+			type="password"
+			id="password"
+			class="form-control"
+			placeholder="Password"
+			aria-describedby="passwordHelpBlock"
+			required
+		/>
+		<div class="d-grid gap-2 col-12">
+			<button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">
+				Enter
+			</button>
+		</div>
+		<p class="mt-4 mb-2 text-muted">Don't have an account? Sign up below.</p>
+		<a class="btn btn-lg btn-link btn-block text-decoration-none" routerLink="/user/registration">
+			I want to sign up
+		</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.modal{
+  background-color: transparent;
+}
+
+.card-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.card-modal .modal-content{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100%;
+}
+
+.card-modal .modal-title{
+  margin-bottom: -10px;
+  color: #123F66;
+}

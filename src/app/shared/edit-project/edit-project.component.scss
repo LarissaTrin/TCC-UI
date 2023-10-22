@@ -1,0 +1,26 @@
+.custom-border-right {
+  border-right: 1px solid #022544 !important;
+  padding-right: 0px;
+}
+
+.item-collor-edit{
+  color: #022544 !important;
+}
+
+.item-collor-edit.active{
+  border-bottom: 2px solid #022544;
+  background-color: #022544;
+  color: white !important;
+  border-top-left-radius: 5px;
+}
+
+.item-collor-delete{
+  border-bottom: 2px solid #ff0021;
+  background-color: #ff0021;
+  color: white !important;
+}
+
+.modal-title {
+  margin-bottom: -10px;
+  color: #123f66;
+}

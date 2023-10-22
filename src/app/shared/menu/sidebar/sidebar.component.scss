@@ -1,0 +1,57 @@
+.color-text-side{
+  color: white;
+  font-size: calc(3.5vh - 1vh);
+  padding-top: 1.5vh;
+  padding-bottom: 1.5vh;
+  margin-right: -11px;
+  margin-left: -11px;
+}
+
+.icon-size{
+  font-size: calc(4vh - 1vh);
+  margin-right: 0.5rem;
+  color: #ffffff;
+}
+
+.icon-size-expand{
+  font-size: calc(4vh - 1vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.active-side {
+  background-color: #0093FF;
+  color: #fff;
+}
+
+.mat-flat-button{
+  background-color: transparent;
+  border: transparent;
+}
+
+.position-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.sidebar-expand {
+  width: 280px;
+}
+
+.sidebar-no-expand {
+  width: 100px;
+}
+
+.sidebar-template {
+  height: 100vh;
+  background-color: #022544;
+}
+
+.sidebar-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,93 @@
+<div class="modal-body">
+  <div class="container">
+    <p
+      class="position-absolute top-50 start-50 translate-middle"
+      *ngIf="cloneList.length == 0"
+    >
+      None register Sections
+    </p>
+    <div
+      *ngIf="cloneList.length > 0"
+      class="section-box-list"
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+    >
+      <ng-container *ngFor="let list of cloneList">
+        <div class="list-section row" *ngIf="list.order !== -1" cdkDrag>
+          <ng-container *ngIf="!list.editMode; else editMode">
+            <h2 class="col-md-9">{{ list.listName }}</h2>
+            <i
+              class="bi bi-pencil col-md-1 mt-2"
+              style="cursor: pointer"
+              (click)="startEditing(list)"
+            ></i>
+          </ng-container>
+          <ng-template #editMode>
+            <div class="col-md-9">
+              <input class="form-control" [(ngModel)]="list.editName" />
+            </div>
+            <i
+              class="bi bi-check2 col-md-1 mt-2"
+              style="cursor: pointer"
+              (click)="saveEditing(list)"
+            ></i>
+          </ng-template>
+          <h2
+            class="col-md-1"
+            style="color: #ff0047; cursor: pointer"
+            (click)="list.editMode ? closeEditing(list) : removeList(list)"
+          >
+            x
+          </h2>
+        </div>
+      </ng-container>
+    </div>
+    <div *ngIf="addList">
+      <div class="card new-section">
+        <div class="card-body" [formGroup]="newSectionForm">
+          <div class="row">
+            <div class="form-group col-md-8">
+              <input
+                type="text"
+                class="form-control"
+                id="newList"
+                formControlName="newList"
+                [ngClass]="{
+                  'is-invalid': validateSection
+                }"
+                placeholder="Enter a new Section"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-color col-md-1 btn-color-new"
+              (click)="addNewList()"
+            >
+              +
+            </button>
+            <button
+              type="button"
+              class="btn btn-color btn-color-cancel col-md-1 ms-2"
+              (click)="addListClick()"
+            >
+              x
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer justify-content-between">
+  <button
+    [disabled]="addList"
+    type="button"
+    class="btn btn-color"
+    (click)="addListClick()"
+  >
+    + New Section
+  </button>
+  <button type="button" class="btn btn-color" (click)="saveOrder()">
+    Save
+  </button>
+</div>

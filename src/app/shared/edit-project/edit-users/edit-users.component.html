@@ -1,0 +1,77 @@
+<div class="row g-3 mt-2 mb-2" [formGroup]="formNewUser">
+  <div class="col-9">
+    <input
+      class="form-control col-md-4"
+      list="datalistOptions"
+      id="selectEmail"
+      formControlName="selectEmail"
+      placeholder="Search user..."
+      (input)="filterUsers($event.target)"
+    />
+    <datalist id="datalistOptions">
+      <option
+        *ngFor="let user of usersList"
+        value="{{ user.email }}"
+      >
+        {{ user.firstName }} {{ user.lastName }}
+      </option>
+    </datalist>
+  </div>
+  <div class="col-1">
+    <button
+      type="submit"
+      class="btn btn-color btn-color-new"
+      (click)="addUser()"
+    >
+      +
+    </button>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-5">
+    <h3><b>Name</b></h3>
+  </div>
+  <div class="col-6">
+    <h3><b>Role</b></h3>
+  </div>
+</div>
+<div *ngFor="let item of projectUsers; let last = last" class="row g-3">
+  <div class="col-5">
+    <h3 [ngClass]="{ deleteUser: item.order === -1 }">
+      {{ item.user?.firstName }} {{ item.user?.lastName }}
+    </h3>
+  </div>
+  <div class="col-5">
+    <select
+      class="form-select"
+      [ngClass]="{ deleteUser: item.order === -1 }"
+      [disabled]="owner === item.userId || item.order === -1"
+      style="margin-top: -5px"
+      aria-label="select role"
+      [(ngModel)]="item.roleId"
+    >
+      <option *ngFor="let role of Constants.roles" [value]="role.id">
+        {{ role.name }}
+      </option>
+    </select>
+  </div>
+  <div *ngIf="owner !== item.userId" class="col-1" (click)="changeOrder(item)">
+    <i
+      *ngIf="item.order !== -1"
+      class="bi bi-trash3-fill col-md-1 button-edit-users"
+    >
+    </i>
+    <i
+      *ngIf="item.order === -1"
+      class="bi bi-check-lg col-md-1 button-edit-users"
+    ></i>
+  </div>
+
+  <hr *ngIf="!last" style="width: 94%; margin-top: -3px" />
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-color ml-auto" (click)="saveUsersList()">
+    Save
+  </button>
+</div>
