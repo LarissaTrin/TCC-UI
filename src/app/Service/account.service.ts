@@ -10,7 +10,7 @@ import { UserUpdate } from '@app/models/Identity/UserUpdate';
   providedIn: 'root'
 })
 export class AccountService {
-  baseURL = environment.apiURL + 'api/account/';
+  baseURL = environment.apiURL + 'api/Account/';
   currentUserSource!: User;
 
   constructor(
@@ -19,7 +19,7 @@ export class AccountService {
   ) { }
 
   public login(model: any): Observable<void> {
-    return this.http.post<User>(this.baseURL + 'login', model).pipe(
+    return this.http.post<User>(this.baseURL + 'Login', model).pipe(
       take(1),
       map((response: User) => {
         const user = response;
