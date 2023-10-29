@@ -167,7 +167,6 @@ export class ListComponent implements OnInit {
   }
 
   saveChanges(cardModify: CardIn) {
-    console.log("cardModify: ", cardModify)
     this.spinner.show();
     this.cardService.putCard(cardModify.id ?? 0, cardModify).subscribe(
       (card: CardIn) => {

@@ -64,7 +64,6 @@ export class DashboardComponent implements OnInit {
 
   setActiveTab(tab: { id: number; title: string; route: string; }) {
     this.activeTab = tab;
-    console.log("Tab ativa:",tab);
   }
 
   createTab() {

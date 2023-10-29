@@ -46,7 +46,6 @@ export class ProfileComponent implements OnInit {
     this.spinner.show()
     this.accountService.getUser().subscribe(
       (response: UserUpdate) => {
-        console.log(response);
         this.userUpdate = response;
         this.profileForm.patchValue(this.userUpdate);
       },

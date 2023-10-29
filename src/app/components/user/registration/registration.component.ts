@@ -45,6 +45,7 @@ export class RegistrationComponent {
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       passwordConfirm: ['', Validators.required],
+      termsRequired: [false, Validators.requiredTrue],
     }, formOptions);
   }
 

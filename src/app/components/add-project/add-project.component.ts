@@ -57,7 +57,6 @@ export class AddProjectComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("test");
     let idRouter = 0;
     if (this.projectForm.valid) {
       this.spinner.show();

@@ -12,6 +12,18 @@
         class="form-control"
         formControlName="cardName"
       />
+      <div class="btn-group">
+        <button
+          id="button-basic"
+          type="button"
+          class="btn btn-primary"
+          aria-controls="dropdown-basic"
+          (click)="saveCard()"
+          style="border-radius: 0px"
+        >
+          Save
+        </button>
+      </div>
       <div class="btn-group custom-dropdown" dropdown>
         <button
           id="button-basic"
@@ -107,7 +119,10 @@
               formControlName="date"
               class="form-control"
               bsDatepicker
-              [bsConfig]="bsConfig"
+              [bsConfig]="{
+                adaptivePosition: true,
+                dateInputFormat: 'DD.MM.YY'
+              }"
             />
           </div>
           <div class="col-md-6">
@@ -163,6 +178,7 @@
               >
                 <div class="row">
                   <div class="col-1 align-items-center">
+                    <label *ngIf="i === 0" for="formGroupCheck" class="form-label label-center-task"><b>Check</b></label>
                     <input
                       class="form-check-input task-finish"
                       type="checkbox"
@@ -172,6 +188,7 @@
                     />
                   </div>
                   <div class="col-4">
+                    <label *ngIf="i === 0" for="formGroupTitle" class="form-label label-center-task"><b>Title</b></label>
                     <input
                       type="text"
                       id="taskTitle"
@@ -181,6 +198,7 @@
                     />
                   </div>
                   <div class="col-3">
+                    <label *ngIf="i === 0" for="formGroupUser" class="form-label label-center-task"><b>User</b></label>
                     <input
                       list="datalistOptions"
                       id="approverTitle"
@@ -198,6 +216,7 @@
                     </datalist>
                   </div>
                   <div class="col-3">
+                    <label *ngIf="i === 0" for="formGroupDate" class="form-label label-center-task"><b>Date</b></label>
                     <input
                       type="text"
                       placeholder="Add Date"
@@ -211,6 +230,7 @@
                     />
                   </div>
                   <div class="col-1">
+                    <label *ngIf="i === 0" for="formGroupRemove" class="form-label label-center-task" style="margin-left: 18px;"><b>Remove</b></label>
                     <button
                       type="button"
                       class="btn btn-color btn-color-cancel col-md-1 ms-1"

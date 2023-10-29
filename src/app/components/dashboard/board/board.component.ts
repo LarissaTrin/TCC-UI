@@ -76,7 +76,6 @@ export class BoardComponent implements OnInit {
     var user = JSON.parse(localStorage.getItem('user') ?? '');
     if (user !== "") {
       var role = this.project.projectUsers?.find(x => x.userId === user.id)?.roleId;
-      console.log("test")
       this.userRolePermission = (role !== 3);
     }
   }

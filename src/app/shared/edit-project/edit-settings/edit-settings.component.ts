@@ -48,7 +48,12 @@ export class EditSettingsComponent implements OnInit {
     this.spinner.show();
     this.project.description = this.form.description.value;
     this.project.projectName = this.form.projectName.value;
-    this.projectServer.put(this.project).subscribe(
+    const cloneProject = { ...this.project };
+  
+    cloneProject.projectUsers = [];
+    console.log("cloneProject: ", cloneProject);
+    console.log("this.project: ", this.project);
+    this.projectServer.put(cloneProject).subscribe(
       () => {
         this.toastr.success("Project modified.", "Success");
       },

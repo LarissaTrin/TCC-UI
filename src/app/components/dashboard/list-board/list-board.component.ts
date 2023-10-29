@@ -57,7 +57,6 @@ export class ListBoardComponent implements OnInit {
         (lists: ListIn[]) => {
           this.lists = lists.sort((a, b) => a.order - b.order);
           this.showBody = lists.map(() => false);
-          console.log("lists: ", this.lists);
         },
         (error: any) => {
           console.log(error);

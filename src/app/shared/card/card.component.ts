@@ -70,14 +70,12 @@ export class CardComponent implements OnInit {
   }
 
   saveCard() {
-    console.log('this.cardForm.value: ', this.cardForm.value);
     let error = false;
     if (this.usersList !== undefined) {
       if (this.cardForm.value.userCardName !== ""){
         let selectedUser = this.usersList.find((user) => user.user?.email?.includes(this.cardForm.value.userCardName));
         this.cardForm.value.userId = selectedUser?.userId;
       }
-      console.log('this.cardForm.value: ',this.cardForm.value)
 
       if (this.cardForm.value.tasksProject.length > 0) {
         this.cardForm.value.tasksProject.forEach((x) => {
@@ -215,7 +213,6 @@ export class CardComponent implements OnInit {
   removeApprover(index: any) {
     this.approverList = this.cardForm.get('approvers') as UntypedFormArray;
     this.approverList.removeAt(index);
-    console.log('cardForm: ', this.cardForm.value);
   }
 
   genApprover(): UntypedFormGroup {

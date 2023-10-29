@@ -57,7 +57,6 @@ export class EditUsersComponent implements OnInit {
   }
 
   filterUsers(evt: any): void {
-    console.log(evt.value)
     if (this.termoBuscaChanged.observers.length === 0) {
       this.termoBuscaChanged
         .pipe(debounceTime(1000))
@@ -85,20 +84,20 @@ export class EditUsersComponent implements OnInit {
   }
 
   addUser() {
-    let selectedUser = this.usersList.find(user => user.email?.includes(this.formNewUser.value.selectEmail));
-    if (selectedUser !== undefined) {
-      const addUser: ProjectUserIn = { 
-        userId: selectedUser.id,
-        projectId: this.projectId ? this.projectId : 0,
-        roleId: 3,
-        order: 0,
-        user: selectedUser,
-      };
-      this.projectUsers?.push(addUser);
-    }
-    this.formNewUser.reset();
-    console.log("projectUsers: ", this.projectUsers);
-
+    if (this.formNewUser.value.selectEmail != "" && this.formNewUser.value.selectEmail != null) {
+      let selectedUser = this.usersList.find(user => user.email?.includes(this.formNewUser.value.selectEmail));
+      if (selectedUser !== undefined) {
+        const addUser: ProjectUserIn = { 
+          userId: selectedUser.id,
+          projectId: this.projectId ? this.projectId : 0,
+          roleId: 3,
+          order: 0,
+          user: selectedUser,
+        };
+        this.projectUsers?.push(addUser);
+      }
+      this.formNewUser.reset();
+      }
   }
 
   getAllUsers() {
